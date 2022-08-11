@@ -15,7 +15,17 @@ export class GetUserByIdUseCase {
         role: true,
         avatar: true,
         wallpaper: true,
-        posts: true,
+        posts: {
+          select: {
+            id: true,
+            owner: true,
+            content: true,
+            published_at: true,
+            link: true,
+            tags: true,
+            likes_count: true
+          }
+        },
       }
     });
 

@@ -8,7 +8,6 @@ import { GetUserByIdController } from "./modules/user/getUserById/GetUserByIdCon
 
 import { CreatePostController } from "./modules/post/createPost/CreatePostController";
 import { GetFeedPostsController } from "./modules/post/getFeedPosts/GetFeedPostsController";
-import { GetUserPostsController } from "./modules/post/getUserPosts/GetUserPostsController";
 
 const routes = Router();
 
@@ -18,14 +17,12 @@ const getUserByIdController = new GetUserByIdController();
 
 const createPostController = new CreatePostController();
 const getFeedPostsController = new GetFeedPostsController();
-const getUserPostsController = new GetUserPostsController();
 
 routes.post("/user/authenticate", authenticateUserController.handle);
 routes.post("/user/create", createUserController.handle);
-routes.get("/user", ensureAuthenticate, getUserByIdController.handle);
+routes.get("/user/:id", ensureAuthenticate, getUserByIdController.handle);
 
 routes.post("/post", ensureAuthenticate, createPostController.handle);
 routes.get("/post/feed", ensureAuthenticate, getFeedPostsController.handle);
-routes.get("/post/user", ensureAuthenticate, getUserPostsController.handle);
 
 export { routes };

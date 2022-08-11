@@ -33,6 +33,7 @@ model Posts {
   link         String
   tags         String[]
   likes_count  Int
+  comments     Comments[]
 
   @@map("posts")
 }
@@ -41,6 +42,8 @@ model Comments {
   id           String   @id @default(uuid())
   id_owner     String
   owner        Users    @relation(fields: [id_owner], references: [id])
+  id_post      String
+  post         Posts    @relation(fields: [id_post], references: [id])
   message      String
   published_at DateTime @default(now())
   likes_count  Int
