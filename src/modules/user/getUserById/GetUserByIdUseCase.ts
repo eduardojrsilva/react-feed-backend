@@ -24,6 +24,9 @@ export class GetUserByIdUseCase {
             link: true,
             tags: true,
             likes_count: true
+          },
+          orderBy: {
+            published_at: 'desc'
           }
         },
       }
