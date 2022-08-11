@@ -5,9 +5,9 @@ export class GetFeedPostsController {
   async handle(request: Request, response: Response) {
     const getFeedPostsUseCase = new GetFeedPostsUseCase();
 
-    const { id } = request.params;
+    const { id_user } = request;
 
-    const result = await getFeedPostsUseCase.execute(id);
+    const result = await getFeedPostsUseCase.execute(id_user);
 
     return response.json(result);
   }
