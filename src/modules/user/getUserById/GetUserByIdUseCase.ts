@@ -22,7 +22,6 @@ export class GetUserByIdUseCase {
             published_at: true,
             link: true,
             tags: true,
-            likes_count: true,
             owner: {
               select: {
                 id: true,
@@ -38,7 +37,6 @@ export class GetUserByIdUseCase {
                 id_post: true,
                 message: true,
                 published_at: true,
-                likes_count: true,
                 owner: {
                   select: {
                     id: true,
@@ -50,6 +48,17 @@ export class GetUserByIdUseCase {
                 },
               }
             },
+            likes: {
+              select: {
+                id: true,
+                owner: {
+                  select: {
+                    id: true,
+                    name: true,
+                  }
+                }
+              }
+            }
           },
           orderBy: {
             published_at: 'desc'

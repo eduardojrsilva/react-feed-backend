@@ -16,7 +16,6 @@ export class GetFeedPostsUseCase {
         published_at: true,
         link: true,
         tags: true,
-        likes_count: true,
         owner: {
           select: {
             id: true,
@@ -32,7 +31,6 @@ export class GetFeedPostsUseCase {
             id_post: true,
             message: true,
             published_at: true,
-            likes_count: true,
             owner: {
               select: {
                 id: true,
@@ -44,6 +42,17 @@ export class GetFeedPostsUseCase {
             },
           }
         },
+        likes: {
+          select: {
+            id: true,
+            owner: {
+              select: {
+                id: true,
+                name: true,
+              }
+            }
+          }
+        }
       },
       orderBy: {
         published_at: 'desc'

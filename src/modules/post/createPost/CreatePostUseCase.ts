@@ -9,16 +9,15 @@ interface ICreatePost {
 
 export class CreatePostUseCase {
   async execute({ id_owner, content, link, tags }: ICreatePost) {
-    const posts = await prisma.posts.create({
+    const post = await prisma.posts.create({
       data: {
         id_owner,
         content,
         link,
         tags,
-        likes_count: 0,
       }
     });
 
-    return posts;
+    return post;
   }
 }

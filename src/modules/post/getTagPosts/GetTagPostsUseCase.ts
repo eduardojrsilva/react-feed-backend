@@ -14,7 +14,6 @@ export class GetTagPostsUseCase {
         published_at: true,
         link: true,
         tags: true,
-        likes_count: true,
         owner: {
           select: {
             id: true,
@@ -30,7 +29,6 @@ export class GetTagPostsUseCase {
             id_post: true,
             message: true,
             published_at: true,
-            likes_count: true,
             owner: {
               select: {
                 id: true,
@@ -42,6 +40,17 @@ export class GetTagPostsUseCase {
             },
           }
         },
+        likes: {
+          select: {
+            id: true,
+            owner: {
+              select: {
+                id: true,
+                name: true,
+              }
+            }
+          }
+        }
       },
       orderBy: {
         published_at: 'desc'

@@ -9,6 +9,7 @@ import { GetUserByIdController } from "./modules/user/getUserById/GetUserByIdCon
 import { CreatePostController } from "./modules/post/createPost/CreatePostController";
 import { GetFeedPostsController } from "./modules/post/getFeedPosts/GetFeedPostsController";
 import { GetTagPostsController } from "./modules/post/getTagPosts/GetTagPostsController";
+import { LikePostController } from "./modules/post/likePost/LikePostController";
 
 import { AddCommentController } from "./modules/comment/addComment/AddCommentController";
 
@@ -21,6 +22,7 @@ const getUserByIdController = new GetUserByIdController();
 const createPostController = new CreatePostController();
 const getFeedPostsController = new GetFeedPostsController();
 const getTagPostsController = new GetTagPostsController();
+const likePostController = new LikePostController();
 
 const addCommentController = new AddCommentController();
 
@@ -31,6 +33,7 @@ routes.get("/user/:id", ensureAuthenticate, getUserByIdController.handle);
 routes.post("/post", ensureAuthenticate, createPostController.handle);
 routes.get("/post/feed", ensureAuthenticate, getFeedPostsController.handle);
 routes.get("/post/:tag", ensureAuthenticate, getTagPostsController.handle);
+routes.post("/post/like", ensureAuthenticate, likePostController.handle);
 
 routes.post("/comment", ensureAuthenticate, addCommentController.handle);
 

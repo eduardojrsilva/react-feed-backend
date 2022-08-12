@@ -13,7 +13,6 @@ export class AddCommentUseCase {
         id_owner,
         id_post,
         message,
-        likes_count: 0
       }
     });
 

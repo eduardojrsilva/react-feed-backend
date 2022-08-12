@@ -20,6 +20,7 @@ model Users {
   wallpaper String
   posts     Posts[]
   comments  Comments[]
+  likes     Likes[]
 
   @@map("users")
 }
@@ -32,8 +33,8 @@ model Posts {
   published_at DateTime @default(now())
   link         String
   tags         String[]
-  likes_count  Int
   comments     Comments[]
+  likes        Likes[]
 
   @@map("posts")
 }
@@ -46,7 +47,20 @@ model Comments {
   post         Posts    @relation(fields: [id_post], references: [id])
   message      String
   published_at DateTime @default(now())
-  likes_count  Int
+  likes        Likes[]
 
   @@map("comments")
+}
+
+model Likes {
+  id         String    @id @default(uuid())
+  id_owner   String
+  owner      Users     @relation(fields: [id_owner], references: [id])
+  id_post    String?
+  post       Posts?    @relation(fields: [id_post], references: [id])
+  id_comment String?
+  comment    Comments? @relation(fields: [id_comment], references: [id])
+  liked_at   DateTime  @default(now())
+
+  @@map("likes")
 }
