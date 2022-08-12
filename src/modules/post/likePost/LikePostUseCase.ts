@@ -7,13 +7,34 @@ interface ILikePost {
 
 export class LikePostUseCase {
   async execute({ id_post, id_owner }: ILikePost) {
-    const like = await prisma.likes.create({
-      data: {
-        id_owner,
-        id_post,
+    const likeActive = await prisma.likes.findFirst({
+      where: {
+        id_post: {
+          equals: id_post
+        },
+        id_owner: {
+          equals: id_owner
+        }
       }
     });
 
-    return like;
+    if (likeActive) {
+      const like = await prisma.likes.delete({
+        where: {
+          id: likeActive.id
+        }
+      });
+
+      return like;
+    } else {
+      const like = await prisma.likes.create({
+        data: {
+          id_owner,
+          id_post,
+        }
+      });
+
+      return like;
+    }
   }
 }
