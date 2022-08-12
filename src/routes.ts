@@ -12,6 +12,7 @@ import { GetTagPostsController } from "./modules/post/getTagPosts/GetTagPostsCon
 import { LikePostController } from "./modules/post/likePost/LikePostController";
 
 import { AddCommentController } from "./modules/comment/addComment/AddCommentController";
+import { LikeCommentController } from "./modules/comment/likeComment/LikeCommentController";
 
 const routes = Router();
 
@@ -25,6 +26,7 @@ const getTagPostsController = new GetTagPostsController();
 const likePostController = new LikePostController();
 
 const addCommentController = new AddCommentController();
+const likeCommentController = new LikeCommentController();
 
 routes.post("/user/authenticate", authenticateUserController.handle);
 routes.post("/user/create", createUserController.handle);
@@ -36,5 +38,6 @@ routes.get("/post/:tag", ensureAuthenticate, getTagPostsController.handle);
 routes.post("/post/like", ensureAuthenticate, likePostController.handle);
 
 routes.post("/comment", ensureAuthenticate, addCommentController.handle);
+routes.post("/comment/like", ensureAuthenticate, likeCommentController.handle);
 
 export { routes };
