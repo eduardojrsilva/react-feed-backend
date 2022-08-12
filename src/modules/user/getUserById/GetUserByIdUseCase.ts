@@ -46,6 +46,17 @@ export class GetUserByIdUseCase {
                     wallpaper: true
                   }
                 },
+                likes: {
+                  select: {
+                    id: true,
+                    owner: {
+                      select: {
+                        id: true,
+                        name: true,
+                      }
+                    }
+                  }
+                }
               }
             },
             likes: {

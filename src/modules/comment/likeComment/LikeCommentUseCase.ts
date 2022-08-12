@@ -9,12 +9,8 @@ export class LikeCommentUseCase {
   async execute({ id_comment, id_owner }: ILikeComment) {
     const likeActive = await prisma.likes.findFirst({
       where: {
-        id_comment: {
-          equals: id_comment
-        },
-        id_owner: {
-          equals: id_owner
-        }
+        id_comment,
+        id_owner,
       }
     });
 

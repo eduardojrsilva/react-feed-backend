@@ -38,6 +38,17 @@ export class GetTagPostsUseCase {
                 wallpaper: true
               }
             },
+            likes: {
+              select: {
+                id: true,
+                owner: {
+                  select: {
+                    id: true,
+                    name: true,
+                  }
+                }
+              }
+            }
           }
         },
         likes: {
