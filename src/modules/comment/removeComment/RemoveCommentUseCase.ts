@@ -14,6 +14,12 @@ export class RemoveCommentUseCase {
     });
 
     if (comment?.id_owner === id_owner) {
+      await prisma.likes.deleteMany({
+        where: {
+          id_comment: comment.id
+        }
+      })
+
       const like = await prisma.comments.delete({
         where: {
           id: id
