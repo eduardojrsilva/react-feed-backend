@@ -75,6 +75,72 @@ export class GetUserByIdUseCase {
             published_at: 'desc'
           }
         },
+        likes: {
+          select: {
+            id: true,
+            post: {
+              select: {
+                id: true,
+                content: true,
+                published_at: true,
+                link: true,
+                tags: true,
+                owner: {
+                  select: {
+                    id: true,
+                    name: true,
+                    role: true,
+                    avatar: true,
+                    wallpaper: true
+                  }
+                },
+                comments: {
+                  select: {
+                    id: true,
+                    id_post: true,
+                    message: true,
+                    published_at: true,
+                    owner: {
+                      select: {
+                        id: true,
+                        name: true,
+                        role: true,
+                        avatar: true,
+                        wallpaper: true
+                      }
+                    },
+                    likes: {
+                      select: {
+                        id: true,
+                        owner: {
+                          select: {
+                            id: true,
+                            name: true,
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                likes: {
+                  select: {
+                    id: true,
+                    owner: {
+                      select: {
+                        id: true,
+                        name: true,
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            liked_at: true,
+          },
+          orderBy: {
+            liked_at: 'desc'
+          }
+        }
       }
     });
 
