@@ -13,6 +13,7 @@ import { LikePostController } from "./modules/post/likePost/LikePostController";
 
 import { AddCommentController } from "./modules/comment/addComment/AddCommentController";
 import { LikeCommentController } from "./modules/comment/likeComment/LikeCommentController";
+import { RemoveCommentController } from "./modules/comment/removeComment/RemoveCommentController";
 
 const routes = Router();
 
@@ -27,6 +28,7 @@ const likePostController = new LikePostController();
 
 const addCommentController = new AddCommentController();
 const likeCommentController = new LikeCommentController();
+const removeCommentController = new RemoveCommentController();
 
 routes.post("/user/authenticate", authenticateUserController.handle);
 routes.post("/user/create", createUserController.handle);
@@ -39,5 +41,6 @@ routes.post("/post/like", ensureAuthenticate, likePostController.handle);
 
 routes.post("/comment", ensureAuthenticate, addCommentController.handle);
 routes.post("/comment/like", ensureAuthenticate, likeCommentController.handle);
+routes.delete("/comment/remove", ensureAuthenticate, removeCommentController.handle);
 
 export { routes };
