@@ -41,6 +41,6 @@ routes.post("/post/like", ensureAuthenticate, likePostController.handle);
 
 routes.post("/comment", ensureAuthenticate, addCommentController.handle);
 routes.post("/comment/like", ensureAuthenticate, likeCommentController.handle);
-routes.delete("/comment/remove", ensureAuthenticate, removeCommentController.handle);
+routes.delete("/comment/remove/:id", ensureAuthenticate, removeCommentController.handle);
 
 export { routes };

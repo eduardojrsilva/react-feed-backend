@@ -6,7 +6,7 @@ export class RemoveCommentController {
     const removeCommentUseCase = new RemoveCommentUseCase();
 
     const { id_user: id_owner } = request;
-    const { id } = request.body;
+    const { id } = request.params;
 
     const result = await removeCommentUseCase.execute({
       id_owner,
